@@ -62,6 +62,6 @@ class MockController
     #[Route('/mock-data/cached-content'), Cache(maxage: 600, public: true)]
     public function cachedContent(): Response
     {
-        return new Response(microtime());
+        return new Response('Response: ' . microtime());
     }
 }
