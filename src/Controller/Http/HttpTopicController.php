@@ -47,4 +47,16 @@ class HttpTopicController
     {
         return new Response();
     }
+
+    #[Route('/topic1/preferred-content-type')]
+    public function preferredContentTypeResolution(Request $request): Response
+    {
+        return new Response('');
+    }
+
+    #[Route('/topic1/preferred-safe')]
+    public function safePreference(Request $request): Response
+    {
+        return new Response('');
+    }
 }

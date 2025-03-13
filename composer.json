@@ -61,9 +61,16 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "cache-clear":[
+            "rm -rf var/cache/*"
+        ],
+        "all": [
+            "@cache-clear",
+            "bin/phpunit tests/ --stop-on-failure --stop-on-error"
+        ],
         "topic1": [
-            "rm -rf var/cache/*",
-            "bin/phpunit"
+            "@cache-clear",
+            "bin/phpunit tests/Topic1/ --stop-on-failure --stop-on-error"
         ]
     },
     "conflict": {

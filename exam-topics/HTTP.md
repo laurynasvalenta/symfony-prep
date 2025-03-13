@@ -44,6 +44,7 @@
 
 * https://symfony.com/doc/7.0/translation.html#handling-the-user-s-locale
 * https://symfony.com/blog/new-in-symfony-5-4-language-negotiation
+* https://symfony.com/blog/new-in-symfony-5-1-the-safe-http-preference
 
 ### Symfony HttpClient component
 

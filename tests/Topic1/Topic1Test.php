@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Topic1;
+namespace App\Tests\Topic1;
 
 use App\Service\Http\ExampleService;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -86,6 +86,43 @@ class Topic1Test extends WebTestCase
 
         static::assertResponseIsSuccessful();
         static::assertEquals('suffixed-' . $value, $response->text());
+    }
+
+    #[Test]
+    public function preferredContentTypeIsExtractedCorrectly(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', '/topic1/preferred-content-type', [], [], [
+            'HTTP_ACCEPT' => 'text/html;q=0.9,application/json;q=0.95',
+        ]);
+
+        static::assertResponseIsSuccessful();
+        static::assertResponseHeaderSame('Content-Type', 'application/json');
+    }
+
+    #[Test]
+    public function safeContentPreferenceIsApplied(): void
+    {
+        $client = static::createClient();
+        $response = $client->request('GET', '/topic1/preferred-safe', [], [], [
+            'HTTP_PREFER' => 'safe',
+            'HTTP_X_FORWARDED_PROTO' => 'https'
+        ]);
+
+        static::assertResponseIsSuccessful();
+        static::assertResponseHeaderSame('Preference-Applied', 'safe');
+        static::assertEquals('Only safe content.', $response->text());
+    }
+
+    #[Test]
+    public function safeContentPreferenceIsNotApplied(): void
+    {
+        $client = static::createClient();
+        $response = $client->request('GET', '/topic1/preferred-safe');
+
+        static::assertResponseIsSuccessful();
+        static::assertResponseHeaderNotSame('Preference-Applied', 'safe');
+        static::assertEquals('Anything.', $response->text());
     }
 
     #[Test]
