@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+PHP_IDE_CONFIG="serverName=localhost" XDEBUG_TRIGGER=1 XDEBUG_MODE=develop,debug SYMFONY_DEBUG="1" php -d zend_extension=xdebug.so "$@"
