@@ -1,3 +1,6 @@
+parameters:
+    demo_bundle.parameter: demo
+
 services:
     DemoBundle\Provider\DateProvider:
         public: true
