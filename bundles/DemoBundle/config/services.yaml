@@ -1,0 +1,3 @@
+services:
+    DemoBundle\Provider\DateProvider:
+        public: true

@@ -6,8 +6,10 @@ framework:
     session: true
     trusted_proxies: '127.0.0.1'
 
-    #esi: true
-    #fragments: true
+    exceptions:
+        # To prevent spammy logging in the tests where this is expected
+        Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException:
+            log_level: debug
 
 when@test:
     framework:

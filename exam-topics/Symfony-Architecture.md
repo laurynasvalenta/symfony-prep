@@ -33,7 +33,6 @@
 * https://symfony.com/doc/7.0/reference/events.html
 * https://symfony.com/doc/7.0/components/event_dispatcher.html
 * https://symfony.com/doc/7.0/components/event_dispatcher/introduction.html
-* https://symfony.com/doc/7.0/components/event_dispatcher/container_aware_dispatcher.html
 * https://symfony.com/doc/7.0/components/event_dispatcher/generic_event.html
 * https://symfony.com/doc/7.0/components/event_dispatcher/immutable_dispatcher.html
 * https://symfony.com/doc/7.0/components/event_dispatcher/traceable_dispatcher.html
