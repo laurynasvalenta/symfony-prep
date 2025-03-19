@@ -17,6 +17,20 @@ class HttpClientStream extends Command
 {
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        $client = HttpClient::create();
+
+        $response = $client->request('GET', 'http://nginx/mock-data/streamed-content');
+
+        foreach ($client->stream($response) as $chunk) {
+            if ($chunk->isLast() === false) {
+                $output->writeln('Downloading content...');
+
+                continue;
+            }
+
+            $output->writeln($response->getContent());
+        }
+
         return Command::SUCCESS;
     }
 }

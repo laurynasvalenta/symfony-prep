@@ -14,6 +14,9 @@ class ExampleService
 
     public function execute(): string
     {
-        return '';
+        $result = $this->client->request('GET', '/example')->getContent() . PHP_EOL;
+        $result .= $this->client->request('GET', '/example1')->getContent();
+
+        return $result;
     }
 }

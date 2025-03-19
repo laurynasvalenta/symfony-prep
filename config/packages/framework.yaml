@@ -6,6 +6,22 @@ framework:
     session: true
     trusted_proxies: '127.0.0.1'
 
+    set_locale_from_accept_language: true
+    set_content_language_from_locale: true
+    enabled_locales: [ 'fr', 'en', 'de', 'sv', 'es' ]
+
+
+    http_client:
+        scoped_clients:
+            header_auth:
+                base_uri: 'http://nginx/'
+                headers:
+                    'X-API-Key': 'secret-api-key-value'
+            query_auth:
+                base_uri: 'http://nginx/'
+                query:
+                    'key': 'secret-api-key-value'
+
     #esi: true
     #fragments: true
 
