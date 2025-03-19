@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Topic2;
 
+use App\EventListener\TestEventListener;
 use DemoBundle\Provider\DateProvider;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\GenericEvent;
 
 /*
  * This is a demonstration test for Symfony Certification Topic 1 (Symfony Architecture).
@@ -34,6 +36,18 @@ class Topic2Test extends WebTestCase
         $container = static::getContainer();
 
         static::assertEquals('demo', $container->getParameter('demo_bundle.parameter'));
+    }
+
+    #[Test]
+    public function eventListenerIsConfiguredCorrectly(): void
+    {
+        $event = new GenericEvent();
+
+        /** @var TraceableEventDispatcher $eventDispatcher */
+        $eventDispatcher = static::getContainer()->get('event_dispatcher');
+        $eventDispatcher->dispatch($event, 'test_event');
+
+        static::assertEquals([TestEventListener::class . '::__invoke'], $this->getCalledListenerNames());
     }
 
     /**
@@ -144,6 +158,18 @@ class Topic2Test extends WebTestCase
 
         return array_values(array_unique(array_map(function ($group) {
             return $group['event'];
+        }, $eventDispatcher->getCalledListeners())));
+    }
+    /**
+     * @return string[]
+     */
+    protected function getCalledListenerNames(): array
+    {
+        /** @var TraceableEventDispatcher $eventDispatcher */
+        $eventDispatcher = static::getContainer()->get('debug.event_dispatcher');
+
+        return array_values(array_unique(array_map(function ($group) {
+            return $group['pretty'];
         }, $eventDispatcher->getCalledListeners())));
     }
 }
