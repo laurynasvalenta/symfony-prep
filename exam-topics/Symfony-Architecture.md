@@ -13,6 +13,7 @@
 ### Components
 * https://symfony.com/doc/7.0/components/index.html
 * https://symfony.com/doc/7.0/components/using_components.html
+* Bundle vs Contract vs Bridge vs standalone library
 
 ### Bridges
 * https://symfony.com/doc/7.0/components/index.html
