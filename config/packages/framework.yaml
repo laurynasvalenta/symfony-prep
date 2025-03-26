@@ -28,6 +28,8 @@ framework:
         # To prevent spammy logging in the tests where this is expected
         Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException:
             log_level: debug
+        Symfony\Component\HttpKernel\Exception\HttpException:
+            log_level: debug
 
 when@test:
     framework:
