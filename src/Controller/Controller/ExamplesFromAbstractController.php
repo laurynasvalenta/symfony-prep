@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\Controller;
 
+use App\Form\FileUploadFormType;
 use App\Form\SimpleFormType;
 use App\Model\ComplexObject;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -120,5 +124,44 @@ class ExamplesFromAbstractController extends AbstractController
     public function containerParameters(): Response
     {
         return new Response($this->container->get('parameter_bag')->get('container.build_id'));
+    }
+
+    #[Route('/topic3/upload-file')]
+    public function uploadFile(Request $request): Response
+    {
+        $form = $this->createForm(FileUploadFormType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $file */
+            $file = $form->get('file')->getData();
+
+            if ($file !== null) {
+                try {
+                    $file->move(__DIR__ . '/../../../var/uploads/', 'symfony.svg');
+                } catch (FileException) {
+                }
+            }
+        }
+
+        return $this->render('topic3/form.html.twig', [
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/topic3/download-file')]
+    public function downloadFile(): Response
+    {
+        $binaryFileResponse = new BinaryFileResponse(__DIR__ . '/../../../var/uploads/symfony.svg', 200, ['Content-Type' => 'image/svg+xml']);
+        $binaryFileResponse->deleteFileAfterSend();
+
+        return $binaryFileResponse;
+    }
+
+    #[Route('/topic3/custom-resolver')]
+    public function customResolver(int $abSum = 0): Response
+    {
+        return new Response(sprintf('abSum is %d.', $abSum));
     }
 }
