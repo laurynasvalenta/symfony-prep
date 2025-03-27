@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Controller;
 
 use App\Form\SimpleFormType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -92,5 +93,23 @@ class ExamplesFromAbstractController
     public function containerParameters(): Response
     {
         return new Response('');
+    }
+
+    #[Route('/topic3/upload-file')]
+    public function uploadFile(Request $request): Response
+    {
+        return new Response('');
+    }
+
+    #[Route('/topic3/download-file')]
+    public function downloadFile(): Response
+    {
+        return new Response('');
+    }
+
+    #[Route('/topic3/custom-resolver')]
+    public function customResolver(int $abSum = 0): Response
+    {
+        return new Response(sprintf('abSum is %d.', $abSum));
     }
 }
