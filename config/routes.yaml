@@ -4,9 +4,20 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+custom_routes:
+    resource: ../config/custom_routes.yaml
+    prefix: /custom-prefix
+
+
 redirect_route:
     path: /topic4/redirect
-    controller: App\Controller\Routing\RoutingController::route1
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    methods: [GET]
+    defaults:
+        route: route1
+        permanent: false
+        keepRequestMethod: true
+
 
 custom_loader:
     resource: .
