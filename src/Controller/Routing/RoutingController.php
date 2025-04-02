@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[AsController]
@@ -99,6 +100,12 @@ class RoutingController
     #[Route("/topic4/route-name-checker/{routeName}")]
     public function routeNameChecker(string $routeName): Response
     {
-        return new Response('Route name checker');
+        try {
+            $this->urlGenerator->generate($routeName);
+
+            return new Response('Route exists');
+        } catch (RouteNotFoundException) {
+            return new Response('Route does not exist');
+        }
     }
 }
