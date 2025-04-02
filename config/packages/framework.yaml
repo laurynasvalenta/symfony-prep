@@ -6,6 +6,10 @@ framework:
     session: true
     trusted_proxies: '127.0.0.1'
 
+    set_locale_from_accept_language: true
+    set_content_language_from_locale: true
+    enabled_locales: [ 'fr', 'en', 'de', 'sv', 'es' ]
+
     exceptions:
         # To prevent spammy logging in the tests where this is expected
         Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException:

@@ -12,6 +12,10 @@ class CustomResolver implements ValueResolverInterface
 {
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
-        return [];
+        if ($argument->getName() !== 'abSum') {
+            return [];
+        }
+
+        return [$request->query->getInt('a') + $request->query->getInt('b')];
     }
 }

@@ -80,7 +80,7 @@ class Topic3Test extends WebTestCase
         TestResolver::$complexObject = $complexObject = new ComplexObject(
             microtime(),
             new DateTime('2021-01-01')
-        );;
+        );
 
         $client = static::createClient();
 
