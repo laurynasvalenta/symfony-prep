@@ -95,4 +95,10 @@ class RoutingController
     {
         return new Response('Custom loaded route');
     }
+
+    #[Route("/topic4/route-name-checker/{routeName}")]
+    public function routeNameChecker(string $routeName): Response
+    {
+        return new Response('Route name checker');
+    }
 }

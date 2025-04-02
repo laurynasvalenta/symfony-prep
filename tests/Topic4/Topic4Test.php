@@ -139,6 +139,24 @@ class Topic4Test extends WebTestCase
         static::assertSame('Custom loaded route', $client->getResponse()->getContent());
     }
 
+    #[Test]
+    #[DataProvider('itIsPossibleToCheckIfARouteExistsProvider')]
+    public function itIsPossibleToCheckIfARouteExists(string $routeNameToCheck, string $expectedResponseContent): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/topic4/route-name-checker/' . $routeNameToCheck);
+
+        static::assertResponseIsSuccessful();
+        static::assertStringContainsString($expectedResponseContent, $client->getResponse()->getContent());
+    }
+
+    public static function itIsPossibleToCheckIfARouteExistsProvider(): iterable
+    {
+        yield ['topic4-link-target', 'Route exists'];
+        yield ['unknown-route', 'Route does not exist'];
+    }
+
     public static function defaultParamValueIsUsedIfParamIsNotProvidedProvider(): iterable
     {
         yield ['/topic4/default-param1', 'default1'];
