@@ -1,0 +1,3 @@
+route1:
+  path: /route1
+  controller: App\Controller\Routing\RoutingController::route1

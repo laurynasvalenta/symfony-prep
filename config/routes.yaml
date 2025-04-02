@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+redirect_route:
+    path: /topic4/redirect
+    controller: App\Controller\Routing\RoutingController::route1
+
+custom_loader:
+    resource: .
+    type: custom_loader

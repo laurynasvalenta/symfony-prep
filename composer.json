@@ -9,6 +9,7 @@
         "ext-iconv": "*",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
+        "symfony/expression-language": "7.2.*",
         "symfony/flex": "^2",
         "symfony/form": "7.2.*",
         "symfony/framework-bundle": "7.2.*",
@@ -89,6 +90,10 @@
         "topic3": [
             "@cache-clear",
             "bin/phpunit tests/Topic3/ --stop-on-failure --stop-on-error"
+        ],
+        "topic4": [
+            "@cache-clear",
+            "bin/phpunit tests/Topic4/ --stop-on-failure --stop-on-error"
         ]
     },
     "conflict": {
