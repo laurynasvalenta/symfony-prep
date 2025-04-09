@@ -24,6 +24,12 @@ framework:
 
     #esi: true
     #fragments: true
+    assets:
+        packages:
+            hometogo:
+                base_url: 'https://www.hometogo.com/assets/'
+
+
     exceptions:
         # To prevent spammy logging in the tests where this is expected
         Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException:

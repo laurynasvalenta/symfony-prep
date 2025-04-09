@@ -1,0 +1,5 @@
+<ol>
+    {% for country in countries %}
+        <li>{{ loop.last ? 'Last' : loop.revindex }}. {{ country }}</li>
+    {% endfor %}
+</ol>

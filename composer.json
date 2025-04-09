@@ -7,6 +7,7 @@
         "php": "8.4.*",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "symfony/asset": "7.2.*",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
         "symfony/expression-language": "7.2.*",
@@ -94,6 +95,10 @@
         "topic4": [
             "@cache-clear",
             "bin/phpunit tests/Topic4/ --stop-on-failure --stop-on-error"
+        ],
+        "topic5": [
+            "@cache-clear",
+            "bin/phpunit tests/Topic5/ --stop-on-failure --stop-on-error"
         ]
     },
     "conflict": {

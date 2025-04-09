@@ -21,6 +21,8 @@ class ViewSubscriber implements EventSubscriberInterface
     {
         $content = $event->getControllerResult();
 
-        $event->setResponse(new Response($content));
+        if (is_string($content)) {
+            $event->setResponse(new Response($content));
+        }
     }
 }
