@@ -24,6 +24,9 @@ class WorkingHoursTypeTest extends TypeTestCase
         parent::setUp();
     }
 
+    /**
+     * @see src/Form/WorkingHoursType.php
+     */
     #[Test]
     public function emptyFormDataIsThereByDefault(): void
     {
@@ -32,6 +35,9 @@ class WorkingHoursTypeTest extends TypeTestCase
         $this->assertEmpty($form->getData());
     }
 
+    /**
+     * @see src/Form/WorkingHoursType.php
+     */
     #[Test]
     public function dataCanBeSubmittedAndTransformed(): void
     {
@@ -43,6 +49,9 @@ class WorkingHoursTypeTest extends TypeTestCase
         $this->assertEquals(new WorkingHours(900, 1700), $form->getData());
     }
 
+    /**
+     * @see src/Form/WorkingHoursType.php
+     */
     #[Test]
     public function invalidDataCannotBeTransformed(): void
     {
@@ -54,6 +63,9 @@ class WorkingHoursTypeTest extends TypeTestCase
         $this->assertNull($form->getData());
     }
 
+    /**
+     * @see src/Form/Extension/ReadOnlyFieldExtension.php
+     */
     #[Test]
     public function workingHoursCannotBeChangedDuringWorkingHours(): void
     {
@@ -66,6 +78,9 @@ class WorkingHoursTypeTest extends TypeTestCase
         $this->assertTrue($view->vars['attr']['readonly']);
     }
 
+    /**
+     * @see src/Form/Extension/ReadOnlyFieldExtension.php
+     */
     #[Test]
     public function workingHoursCanBeChangeOutsideWorkingHours(): void
     {

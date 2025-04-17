@@ -13,6 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class Topic6Test extends WebTestCase
 {
+    /**
+     * Use `topic6/example_form.html.twig` template.
+     *
+     * @see src/Controller/Forms/FormExampleController.php
+     */
     #[Test]
     #[DataProvider('formObjectCanBeCreatedProvider')]
     public function formObjectCanBeCreated(string $url): void
@@ -24,6 +29,11 @@ class Topic6Test extends WebTestCase
         static::assertSelectorExists('form[name="example_form"]');
     }
 
+    /**
+     * Use `topic6/example_form.html.twig` template.
+     *
+     * @see src/Controller/Forms/FormExampleController.php
+     */
     #[Test]
     public function formCanBeHandled(): void
     {
@@ -38,6 +48,9 @@ class Topic6Test extends WebTestCase
         static::assertSelectorTextContains('h1', 'Submitted example form with name Bob.');
     }
 
+    /**
+     * @see src/Form/ExampleFormType.php
+     */
     #[Test]
     public function formIsValidated(): void
     {
