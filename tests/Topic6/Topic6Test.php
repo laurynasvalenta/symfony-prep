@@ -82,6 +82,9 @@ class Topic6Test extends WebTestCase
         static::assertSelectorExists('div.mb-3');
     }
 
+    /**
+     * @see templates/topic6/form_theme_customization2.html.twig
+     */
     #[Test]
     public function formThemeCanBeCustomizedDirectlyInTemplate(): void
     {
