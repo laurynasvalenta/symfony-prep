@@ -3,6 +3,8 @@ twig:
     globals:
         globalVariableFromConfig: 'global-variable-example'
 
+    form_themes: [ 'foundation_6_layout.html.twig' ]
+
 when@test:
     twig:
         strict_variables: true

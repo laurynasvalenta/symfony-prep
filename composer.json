@@ -15,6 +15,7 @@
         "symfony/form": "7.2.*",
         "symfony/framework-bundle": "7.2.*",
         "symfony/http-client": "7.2.*",
+        "symfony/intl": "7.2.*",
         "symfony/property-access": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",
@@ -99,6 +100,10 @@
         "topic5": [
             "@cache-clear",
             "bin/phpunit tests/Topic5/ --stop-on-failure --stop-on-error"
+        ],
+        "topic6": [
+            "@cache-clear",
+            "bin/phpunit tests/Topic6/ --stop-on-failure --stop-on-error"
         ]
     },
     "conflict": {
