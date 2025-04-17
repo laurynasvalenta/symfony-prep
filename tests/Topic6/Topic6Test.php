@@ -102,7 +102,7 @@ class Topic6Test extends WebTestCase
     public function formThemeCanBeCustomizedDirectlyInTemplate(): void
     {
         $client = static::createClient();
-        $client->request('/topic6/twig-form2', 'GET');
+        $client->request('GET', '/topic6/twig-form2');
 
         static::assertResponseIsSuccessful();
         static::assertSelectorCount(249, 'div.every-choice-in-its-own-div');
