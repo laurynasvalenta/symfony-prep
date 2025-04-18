@@ -12,7 +12,7 @@
 * https://symfony.com/doc/7.0/components/form.html
 * https://symfony.com/doc/7.0/form/direct_submit.html
 * https://symfony.com/doc/7.0/form/disabling_validation.html
-* https://symfony.com/doc/6.0/form/button_based_validation.html
+* https://symfony.com/doc/7.0/form/button_based_validation.html
 ### Form types (built-in and custom)
 * https://symfony.com/doc/7.0/components/options_resolver.html
 * https://symfony.com/doc/7.0/form/create_custom_field_type.html
