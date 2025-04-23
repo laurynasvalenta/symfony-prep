@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Twig\Environment;
 use Twig\Error\SyntaxError;
 use Twig\Source;
-use Twig\Token;
 
 /*
  * This is a demonstration test for Symfony Certification Topic 5 (Templating with Twig).
