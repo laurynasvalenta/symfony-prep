@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use Symfony\Component\Validator\Constraints\Cascade;
 use Symfony\Component\Validator\Constraints\NotNull;
 
+#[Cascade]
 class AnotherExampleModel
 {
     public function __construct(

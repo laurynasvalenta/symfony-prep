@@ -37,6 +37,10 @@ framework:
         Symfony\Component\HttpKernel\Exception\HttpException:
             log_level: debug
 
+    validation:
+        not_compromised_password:
+            enabled: true
+
 when@test:
     framework:
         test: true
