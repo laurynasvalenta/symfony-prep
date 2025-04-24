@@ -7,7 +7,7 @@ namespace App\Model;
 use ArrayIterator;
 use Symfony\Component\Validator\Constraints\Traverse;
 
-#[Traverse]
+#[Traverse(traverse: false)]
 class TraversableExample extends ArrayIterator
 {
 }
