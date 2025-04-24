@@ -7,6 +7,7 @@ namespace App\Tests\Topic7;
 use App\Model\AnotherExampleModel;
 use App\Model\ExampleModel;
 use App\Model\TraversableExample;
+use App\Model\TraversableExample2;
 use App\Model\User;
 use DateTime;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -256,8 +257,8 @@ class ConstraintsTest extends WebTestCase
         yield [new AnotherExampleModel(property: 'test', anotherProperty: new AnotherExampleModel(null)), 'constraint65', 'This value should not be null.'];
         yield [new AnotherExampleModel(property: 'test', anotherProperty: new AnotherExampleModel('not-null')), 'constraint65', ''];
 
-        yield [new TraversableExample([new AnotherExampleModel('valid'), new AnotherExampleModel(null)]), 'constraint66', 'This value should not be null.'];
-        yield [new TraversableExample([new AnotherExampleModel('valid1'), new AnotherExampleModel('valid2')]), 'constraint66', ''];
+        yield [new TraversableExample([new AnotherExampleModel('valid1'), new AnotherExampleModel(null)]), 'constraint66', ''];
+        yield [new TraversableExample2([new AnotherExampleModel('valid'), new AnotherExampleModel(null)]), 'constraint66', 'This value should not be null.'];
 
         yield [new ExampleModel(['key' => '']), 'constraint67', 'This value should not be blank.'];
         yield [new ExampleModel(['key' => 'valid']), 'constraint67', ''];
