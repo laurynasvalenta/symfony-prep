@@ -1,0 +1,5 @@
+App\Model\Car:
+  properties:
+    fuelType:
+      - NotBlank:
+          message: 'Car fuel type should not be blank.'

@@ -1,0 +1,5 @@
+App\Model\Vehicle:
+  properties:
+    brand:
+      - NotBlank:
+          message: 'Vehicle brand should not be blank.'
