@@ -8,13 +8,22 @@ use Psr\Clock\ClockInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Throwable;
 
-class ServiceWithMultipleDependencies
+class ServiceWithMultipleDependencies implements ServiceSubscriberInterface
 {
     public function __construct(
         private ?ContainerInterface $locator = null
     ) {
+    }
+
+    public static function getSubscribedServices(): array
+    {
+        return [
+            LoggerInterface::class,
+            ClockInterface::class,
+        ];
     }
 
     public function getLogger(): ?LoggerInterface

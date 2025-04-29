@@ -17,6 +17,10 @@ class Configuration2 implements ConfigurationInterface
         $rootNode
             ->children()
                 ->stringNode('type')
+                    ->validate()
+                        ->ifNotInArray(['pdf', 'jpg'])
+                        ->then(fn($m) => sprintf('Other type: %s', $m))
+                    ->end()
                 ->end()
             ->end();
 

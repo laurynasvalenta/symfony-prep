@@ -5,16 +5,20 @@ declare(strict_types=1);
 namespace App\DependencyInjection;
 
 use App\Service\DependencyInjectionTopic\Monitor;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Throwable;
 
-class LoggerRemovingExtension extends Extension
+class LoggerRemovingExtension extends Extension implements CompilerPassInterface
 {
     public function load(array $configs, ContainerBuilder $container)
     {
-        $container->setParameter('new_parameter', 'value');
+        $this->removeLogger($container);
+    }
 
+    public function process(ContainerBuilder $container)
+    {
         $this->removeLogger($container);
     }
 

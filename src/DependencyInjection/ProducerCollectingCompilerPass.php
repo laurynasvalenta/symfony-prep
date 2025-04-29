@@ -11,5 +11,16 @@ class ProducerCollectingCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
+        $collection = $container->getDefinition('app.second_collection');
+
+        $taggedServices = $container->findTaggedServiceIds('producer');
+
+        $services = [];
+
+        foreach ($taggedServices as $id => $tags) {
+            $services[] = $container->getDefinition($id);
+        }
+
+        $collection->setArgument(0, $services);
     }
 }

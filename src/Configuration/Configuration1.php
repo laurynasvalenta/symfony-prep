@@ -15,6 +15,7 @@ class Configuration1 implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
+            ->fixXmlConfig('name')
             ->children()
                 ->arrayNode('names')
                     ->scalarPrototype()->end()
