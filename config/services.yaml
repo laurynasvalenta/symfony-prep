@@ -21,6 +21,7 @@ services:
             - '../src/Entity/'
             - '../src/Model/'
             - '../src/Kernel.php'
+            - '../src/Service/DependencyInjectionTopic/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
@@ -28,3 +29,6 @@ services:
     App\Service\Loader\RoutesLoader:
         tags:
             - routing.loader
+
+imports:
+    - { resource: dependency_injection_topic.yaml }

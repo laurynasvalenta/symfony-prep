@@ -1,0 +1,114 @@
+services:
+  App\Service\DependencyInjectionTopic\Manager:
+    public: true
+
+  App\Service\DependencyInjectionTopic\Handler:
+    autowire: true
+    public: true
+
+  App\Service\DependencyInjectionTopic\Parser:
+    public: true
+
+  App\Service\DependencyInjectionTopic\Processor: ~
+
+  App\Service\DependencyInjectionTopic\Generator: ~
+
+  some_abstract_service:
+    class: App\Service\DependencyInjectionTopic\Connector
+    public: true
+    calls:
+        - setLogger: ['@logger']
+
+  simple_service:
+    class: App\Service\DependencyInjectionTopic\Connector
+
+
+
+  App\Service\DependencyInjectionTopic\Mapper:
+    properties:
+      # Decode file name from 'BASE64_ENCODED_CONTENT_PATH', read that file, parse JSON and extract the KeyName
+      value: ''
+
+
+
+  App\Service\DependencyInjectionTopic\Factory: ~
+
+  app.profiler.built_by_static_factory:
+    class: App\Service\DependencyInjectionTopic\Profiler
+    public: true
+
+  app.profiler.built_by_service_factory:
+    class: App\Service\DependencyInjectionTopic\Profiler
+    public: true
+
+  App\Service\DependencyInjectionTopic\Aggregator: ~
+
+  App\Service\DependencyInjectionTopic\ServiceWithMultipleDependencies:
+    autowire: true
+    autoconfigure: true
+
+  App\Service\DependencyInjectionTopic\AnotherServiceWithMultipleDependencies:
+    autowire: true
+    autoconfigure: true
+
+  App\Service\DependencyInjectionTopic\Monitor:
+    arguments:
+      - '@logger'
+
+
+
+  App\Service\DependencyInjectionTopic\TrackerInterface: '@App\Service\DependencyInjectionTopic\Tracker'
+
+  App\Service\DependencyInjectionTopic\Tracker: ~
+
+  App\Service\DependencyInjectionTopic\OuterTrackerDecorator:
+    arguments: ~
+
+  App\Service\DependencyInjectionTopic\TrackerDecorator:
+    arguments: ~
+
+
+
+  app.first_collection:
+    class: App\Service\DependencyInjectionTopic\Collection
+    public: true
+
+  app.second_collection:
+    class: App\Service\DependencyInjectionTopic\Collection
+    public: true
+
+  app.producer1:
+    class: App\Service\DependencyInjectionTopic\Producer
+    arguments:
+      - 'producer1'
+    tags:
+      - producer
+
+  app.producer2:
+    class: App\Service\DependencyInjectionTopic\Producer
+    arguments:
+      - 'producer2'
+    tags:
+      - producer
+
+
+
+  app.third_collection:
+    class: App\Service\DependencyInjectionTopic\Collection
+    public: true
+    arguments:
+      - !tagged_iterator special_tag1
+
+  app.fourth_collection:
+    class: App\Service\DependencyInjectionTopic\Collection
+    public: true
+    arguments:
+      - !tagged_iterator special_tag2
+
+
+
+  App\Service\DependencyInjectionTopic\SubProducer:
+    autoconfigure: true
+
+  App\Service\DependencyInjectionTopic\Provider:
+    autoconfigure: true
