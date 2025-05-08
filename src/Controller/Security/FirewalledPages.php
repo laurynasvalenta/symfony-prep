@@ -8,7 +8,6 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -26,6 +25,7 @@ class FirewalledPages
         );
     }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/topic9/blue-firewall/protected-page')]
     #[Route('/topic9/green-firewall/protected-page')]
     public function page2(Security $security, Request $request): Response
@@ -37,14 +37,9 @@ class FirewalledPages
     }
 
     #[Route('/topic9/blue-firewall/role-protected-page')]
-    public function page3(Security $security): Response
+    #[IsGranted('ROLE_REGIONAL_ADMIN')]
+    public function page3(): Response
     {
-        $roles = $security->getUser()?->getRoles() ?? [];
-
-        if (in_array('ROLE_REGIONAL_ADMIN', $roles) === false) {
-            throw new AccessDeniedHttpException('');
-        }
-
         return new Response('Role-protected page.');
     }
 
@@ -53,9 +48,12 @@ class FirewalledPages
     {
         $summary = [
             'Authenticated User' => $security->getUser()?->getUserIdentifier(),
-            'Is the user currently impersonating another user' => 'Unknown',
-            'Is the user authenticated via the remember me token' => 'Unknown',
-            'Is completely authenticated' => 'Unknown',
+            'Is the user currently impersonating another user'
+                => $security->isGranted('IS_IMPERSONATOR') ? 'Yes' : 'No',
+            'Is the user authenticated via the remember me token'
+                => $security->isGranted('IS_REMEMBERED') ? 'Yes' : 'No',
+            'Is completely authenticated'
+                => $security->isGranted('IS_AUTHENTICATED_FULLY') ? 'Yes' : 'No',
         ];
 
         return new Response(implode("\n", array_map(

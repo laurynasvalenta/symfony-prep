@@ -5,6 +5,8 @@ security:
 
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
+        App\Model\User:
+            id: 'App\Service\PasswordHasher\ExtraSafePasswordHasher'
         Symfony\Component\Security\Core\User\InMemoryUser:
             algorithm: 'plaintext'
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -21,6 +23,23 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        blue:
+            pattern: ^/topic9/blue-firewall
+            provider: users_in_memory
+            switch_user: true
+            form_login:
+                use_forward: true
+                login_path: blue_firewall_login
+                check_path: blue_firewall_login
+
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800
+                always_remember_me: true
+        green:
+            pattern: ^/topic9/green-firewall
+            provider: users_in_memory
+            context: blue
         main:
             lazy: true
             provider: users_in_memory
@@ -34,9 +53,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/topic9/blue-firewall/restricted, roles: PUBLIC_ACCESS }
          - { path: ^/topic9/blue-firewall/restricted/regional-admin, roles: ROLE_REGIONAL_ADMIN }
+         - { path: ^/topic9/blue-firewall/restricted, roles: ROLE_SUPER_ADMIN }
          - { path: ^/topic9/blue-firewall/access-controlled, roles: ROLE_USER, allow_if: "request.getMethod() == 'POST'" }
+
+    access_decision_manager:
+        strategy: unanimous
 
 when@test:
     security:
