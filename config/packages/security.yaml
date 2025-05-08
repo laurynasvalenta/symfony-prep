@@ -1,6 +1,12 @@
 security:
+    role_hierarchy:
+        ROLE_SUPER_ADMIN:
+            - ROLE_REGIONAL_ADMIN
+
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
+        Symfony\Component\Security\Core\User\InMemoryUser:
+            algorithm: 'plaintext'
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
@@ -8,6 +14,9 @@ security:
             memory:
                 users:
                     test: { password: 'test', roles: [ 'ROLE_USER' ] }
+                    test_user1: { password: 'test', roles: [ 'ROLE_USER', 'ROLE_REGIONAL_ADMIN' ] }
+                    test_user2: { password: 'test', roles: [ 'ROLE_USER', 'ROLE_SUPER_ADMIN' ] }
+                    test_user3: { password: 'test', roles: [ 'ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH' ] }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -25,8 +34,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/topic9/blue-firewall/restricted, roles: PUBLIC_ACCESS }
+         - { path: ^/topic9/blue-firewall/restricted/regional-admin, roles: ROLE_REGIONAL_ADMIN }
+         - { path: ^/topic9/blue-firewall/access-controlled, roles: ROLE_USER, allow_if: "request.getMethod() == 'POST'" }
 
 when@test:
     security:

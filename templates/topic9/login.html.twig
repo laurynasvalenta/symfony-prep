@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
+              crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="grid-container">
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('blue_firewall_login') }}" method="post">
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" required>
+        <label>
+            <input type="checkbox" name="_remember_me" checked>
+            Keep me logged in
+        </label>
+
+        <input type="submit" value="Login" class="button">
+    </form>
+
+</div>
+</body>
+</html>
