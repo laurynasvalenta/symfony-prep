@@ -111,6 +111,10 @@
         "topic8": [
             "@cache-clear",
             "bin/phpunit tests/Topic8/ --stop-on-failure --stop-on-error"
+        ],
+        "topic9": [
+            "@cache-clear",
+            "bin/phpunit tests/Topic9/ --stop-on-failure --stop-on-error"
         ]
     },
     "conflict": {
