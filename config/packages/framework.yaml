@@ -10,6 +10,8 @@ framework:
     set_content_language_from_locale: true
     enabled_locales: [ 'fr', 'en', 'de', 'sv', 'es' ]
 
+    http_cache:
+        enabled: true
 
     http_client:
         scoped_clients:
@@ -22,8 +24,8 @@ framework:
                 query:
                     'key': 'secret-api-key-value'
 
-    #esi: true
-    #fragments: true
+    esi: true
+    fragments: true
     assets:
         packages:
             hometogo:

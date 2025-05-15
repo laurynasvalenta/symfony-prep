@@ -22,7 +22,7 @@ class HttpCachingController
     {
         $response = new Response('This response is private and cacheable: ' . microtime());
 
-        $response->setPublic();
+        $response->setPrivate();
         $response->setMaxAge(3600);
 
         return $response;
@@ -33,6 +33,7 @@ class HttpCachingController
     {
         $response = new Response('This response is public and cacheable: ' . microtime());
 
+        $response->setPublic();
         $response->setMaxAge(3600);
 
         return $response;
@@ -43,6 +44,7 @@ class HttpCachingController
     {
         $response = new Response('This response is marked as no-store: '  . microtime());
 
+        $response->setCache(['no_store' => true]);
         $response->setPublic();
         $response->setMaxAge(3600);
 
@@ -55,6 +57,9 @@ class HttpCachingController
         $response = new Response('This response is validatable: ' . microtime());
 
         $response->setPrivate();
+        $response->setCache(['no_cache' => true, 'must_revalidate' => true]);
+        $response->setLastModified(new \DateTimeImmutable('-3 weeks'));
+        $response->setEtag("unique-content-hash", true);
 
         return $response;
     }
