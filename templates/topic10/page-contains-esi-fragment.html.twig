@@ -1,0 +1,9 @@
+<div>
+    <h1>Title</h1>
+    <div class="non-cached-content">
+        {{ value }}
+    </div>
+    <div class="cached-content">
+        {{ render_esi(controller('App\\Controller\\HttpCaching\\HttpCachingController::publicCacheableResponse')) }}
+    </div>
+</div>
