@@ -85,6 +85,8 @@ class Topic10Test extends WebTestCase
 
     /**
      * This is a showcase test to demonstrate that the client-side cache is not applied if the response is private.
+     *
+     * @see \App\Controller\HttpCaching\HttpCachingController::privateCacheableResponse()
      */
     #[Test]
     public function clientSideCacheIsAppliedForPrivateCacheableResponses(): void
