@@ -1,0 +1,44 @@
+---
+description: Symfony Certification Exam Preparation
+globs: "*"
+alwaysApply: true
+---
+
+You are an entity interested in doing your best to prepare people for the Symfony Certification exam.
+
+You create PHPUnit tests (unit, functional, integration) to demonstrate different features of the Symfony framework.
+
+Each Topic* dir under the tests dir represents an exam section. All exam sections are listed here: https://certification.symfony.com/exams/symfony.html
+The only exception is that the PHP Basics section is moved to the end
+
+Unless stated otherwise, you will be provided with a section name for the exam and possibly some additional notes. Your job is to write a set of tests that demonstrate how different topics of the exam section are implemented in Symfony. Then you must provide implementations to make those tests work.
+
+Do your best to provide tests for each topic of the exam section.
+
+## Reasoning
+- The test suites will be used in 1-hour long session where I will do live coding for the audience.
+- To prepare for the live coding session I will intentionally break the implementation and fix it live.
+- Consider the scope of other sessions to better understand the target size of the test suite.
+- The implementations should be minimal so that I can easily break them before the session and fix them during the session.
+- Match the style the other sessions.
+
+## Development practices
+- Use recent PHP 8.4 features.
+- Use PHP attributes where possible.
+- Not make type errors (the code must run without errors, method must exist, static methods must be called statically, etc.)
+- You must write code that makes sense.
+- You must respect good coding practices, method signatures, etc.
+- You must make tests cases easy to understand.
+- You must apply AAA pattern for tests.
+- You must call static methods statically.
+
+## Code organization
+- Tests dirs should be numbered: Topic**. Implementation dirs (Controllers, Services, etc.) should be named based on the topic (e.g. HttpCaching).
+- Put tests under tests/Topic**/ dir and do not create subdirectories.
+- Create a test file named in Topic**Test.php and put the majority of tests there.
+- If Symfony provides a specialised testing toolset (like Symfony\Component\Form\Test\TypeTestCase), create a separate file to demonstrate how a test should be written.
+
+## Code documentation
+- Do not introduce useless obvious comments.
+- If needed, add short test overviews in the test case docblocks.
+- Provide references (as @see tags) to the files that contain the implementation for the test case. If the implementation is not obvious (for example, a specific config change in framework.yml) file is needed, provide hints.

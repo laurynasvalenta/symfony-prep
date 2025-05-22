@@ -1,0 +1,31 @@
+---
+description: Code organization for Symfony certification exam
+globs: "*"
+alwaysApply: true
+---
+
+## Code organization
+- Organize code based on Symfony's directory structure:
+  - Use the correct namespace conventions: `App\...`
+  - Follow the Symfony 6 directory structure
+  - Put controllers in `src/Controller/`
+  - Put entities in `src/Entity/`
+  - Put services in `src/Service/`
+  - Put forms in `src/Form/`
+  - Put repositories in `src/Repository/`
+  - Put event subscribers in `src/EventSubscriber/`
+  - Put command handlers in `src/Command/`
+
+- Test organization:
+  - Tests dirs should be numbered: Topic**
+  - Implementation dirs (Controllers, Services, etc.) should be named based on the topic (e.g. HttpCaching)
+  - Put tests under `tests/Topic**/` dir and do not create subdirectories
+  - Create a test file named in Topic**Test.php and put the majority of tests there
+  - If Symfony provides a specialized testing toolset (like Symfony\Component\Form\Test\TypeTestCase), create a separate file to demonstrate how a test should be written
+
+- Configuration organization:
+  - Place configuration in the appropriate files under `config/`
+  - Use YAML for configuration files when possible
+  - Place routes in `config/routes.yaml` or using annotations/attributes
+  - Place services configuration in `config/services.yaml`
+  - Use environment variables and .env files appropriately

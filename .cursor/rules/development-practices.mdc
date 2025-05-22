@@ -1,0 +1,31 @@
+---
+description: Development practices for Symfony certification exam
+globs: "*.php"
+alwaysApply: true
+---
+
+## Development practices
+- Use recent PHP 8.4 features where appropriate:
+  - Use typed properties with appropriate type declarations
+  - Use union types and intersection types when needed
+  - Use PHP 8 attributes instead of annotations
+  - Use named arguments for better readability
+  - Use constructor property promotion
+  - Use match expressions instead of switch statements
+  - Use null coalescing operator (??) and nullsafe operator (?->)
+- Write code that respects Symfony's coding standards:
+  - Follow PSR-12 coding standard
+  - Use camelCase for method names and variables
+  - Use PascalCase for class names
+  - Use snake_case for configuration parameters
+- Apply clean code principles:
+  - Write descriptive variable and method names
+  - Keep methods small and focused on a single responsibility
+  - Apply SOLID principles where appropriate
+- Test structure and organization:
+  - Follow AAA (Arrange-Act-Assert) pattern in tests
+  - Use descriptive test method names that explain what is being tested
+  - Use data providers for parameterized tests
+  - Group related tests in the same test class
+  - Include appropriate assertions to validate behavior
+  - Always check for both positive and negative scenarios
