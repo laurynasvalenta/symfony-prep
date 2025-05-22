@@ -19,6 +19,12 @@ class ExecuteFunctionCommand extends Command
         static::$constructorHasBeenCalled = true;
     }
 
+    protected function configure(): void
+    {
+        $this->setName('app:console:execute-function')
+            ->setDescription('A command to execute a function');
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Hello, this is a basic console command!');

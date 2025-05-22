@@ -17,6 +17,23 @@ class VerbosityCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $output->writeln('Normal output', OutputInterface::VERBOSITY_NORMAL);
+        $output->writeln('Verbose output', OutputInterface::VERBOSITY_VERBOSE);
+        $output->writeln('Very verbose output', OutputInterface::VERBOSITY_VERY_VERBOSE);
+        $output->writeln('Debug output', OutputInterface::VERBOSITY_DEBUG);
+
+        if ($output->isVerbose()) {
+            $output->writeln('This is also displayed in verbose mode');
+        }
+
+        if ($output->isVeryVerbose()) {
+            $output->writeln('This is also displayed in very verbose mode');
+        }
+
+        if ($output->isDebug()) {
+            $output->writeln('This is also displayed in debug mode');
+        }
+
         return Command::SUCCESS;
     }
-} 
+}

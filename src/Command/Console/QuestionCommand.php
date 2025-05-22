@@ -17,6 +17,17 @@ class QuestionCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $helper = $this->getHelper('question');
+
+        $nameQuestion = new Question('What is your name?');
+        $cityQuestion = new Question('What city do you live in?');
+        $name = $helper->ask($input, $output, $nameQuestion);
+        $output->writeln('Name: ' . $name);
+
+        $city = $helper->ask($input, $output, $cityQuestion);
+
+        $output->writeln('City: ' . $city);
+
         return 0;
     }
 } 

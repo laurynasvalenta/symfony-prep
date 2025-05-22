@@ -7,6 +7,7 @@ namespace App\Command\Console;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
@@ -18,7 +19,7 @@ class OptionsCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addOption('port');
+            ->addOption('port',  null, InputOption::VALUE_OPTIONAL, 'Port to connect to.', 8080);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

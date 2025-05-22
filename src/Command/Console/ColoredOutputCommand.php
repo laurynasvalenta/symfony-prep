@@ -21,9 +21,12 @@ class ColoredOutputCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $option = [];
+        $option = [
+            'normal' => OutputInterface::OUTPUT_NORMAL,
+            'raw' => OutputInterface::OUTPUT_RAW,
+        ];
 
-        $output->writeln('<fg=red>Red output</>', $option[$input->getArgument('outputOption')] ?? null);
+        $output->writeln('<fg=red>Red output</>', $option[$input->getArgument('outputOption')]);
 
         return Command::SUCCESS;
     }

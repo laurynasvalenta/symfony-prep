@@ -6,6 +6,7 @@ namespace App\Command\Console;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -16,7 +17,15 @@ class TableCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(json_encode([['Name', 'Age', 'City'], ['Alice', 24, 'Paris'], ['Bob', 35, 'London'],]));
+        $table = new Table($output);
+        $table
+            ->setHeaders(['Name', 'Age', 'City'])
+            ->setRows([
+                ['Alice', 24, 'Paris'],
+                ['Bob', 35, 'London'],
+            ]);
+
+        $table->render();
 
         return 0;
     }

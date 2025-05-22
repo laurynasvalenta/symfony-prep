@@ -19,7 +19,7 @@ class ArgumentsCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('countries', InputArgument::REQUIRED & InputArgument::IS_ARRAY);
+            ->addArgument('countries', InputArgument::REQUIRED | InputArgument::IS_ARRAY);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

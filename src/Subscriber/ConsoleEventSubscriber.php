@@ -19,7 +19,11 @@ class ConsoleEventSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents(): array
     {
-        return [];
+        return [
+            ConsoleEvents::COMMAND => 'onConsoleCommand',
+            ConsoleEvents::TERMINATE => 'onConsoleTerminate',
+            ConsoleEvents::ERROR => 'onConsoleError',
+        ];
     }
 
     public function onConsoleCommand(): void
