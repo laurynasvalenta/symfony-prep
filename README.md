@@ -1,6 +1,6 @@
 # Symfony Certification Preparation App
 
-## Initial setup
+## Initial Setup
 1. Clone the repository.
 2. Run `make start` to launch the app.
 3. Run `make shell` to enter the container.
