@@ -1,0 +1,24 @@
+---
+description: Code documentation for Symfony certification exam
+globs: "*.php"
+alwaysApply: true
+---
+
+## Code documentation
+- Focus on meaningful documentation:
+  - Do not introduce useless obvious comments
+  - Add PHPDoc blocks to classes and methods with meaningful descriptions
+  - Include parameter and return type documentation in PHPDoc blocks
+  - Use `@param`, `@return`, and `@throws` tags appropriately
+  
+- Test documentation:
+  - Add short test overviews in the test case docblocks explaining what's being tested
+  - For complex tests, include a brief explanation of the test strategy
+  - Provide references (as `@see` tags) to the files that contain the implementation for the test case
+  - If the implementation is not obvious (e.g., a specific config change in framework.yml), provide hints
+  
+- Integration with IDE and development tools:
+  - Use PHPDoc annotations that support IDE autocompletion
+  - Include enough type information in PHPDoc blocks for static analysis tools
+  - Use descriptive parameter names that align with their intended purpose
+  - Document expected exceptions and edge cases
