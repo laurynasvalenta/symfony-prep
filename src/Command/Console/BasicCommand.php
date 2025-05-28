@@ -14,8 +14,6 @@ class BasicCommand
 
     public function __construct()
     {
-        parent::__construct();
-
         static::$constructorHasBeenCalled = true;
     }
 
