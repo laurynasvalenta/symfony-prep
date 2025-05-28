@@ -26,12 +26,12 @@
 ### Loops and conditions
 * https://twig.symfony.com/doc/3.x/templates.html#control-structure
 ### URLs generation
-* https://symfony.com/doc/current/templates.html#templates-link-to-pages
+* https://symfony.com/doc/7.0/templates.html#templates-link-to-pages
 ### Controller rendering
 * https://symfony.com/doc/7.0/templates.html#rendering-templates
 ### Translations and pluralization
-* https://symfony.com/doc/current/translation.html#translatable-objects
-* https://symfony.com/doc/current/translation.html#translations-in-templates
+* https://symfony.com/doc/7.0/translation.html#translatable-objects
+* https://symfony.com/doc/7.0/translation.html#translations-in-templates
 ### String interpolation
 * https://twig.symfony.com/doc/3.x/templates.html#string-interpolation
 ### Assets management

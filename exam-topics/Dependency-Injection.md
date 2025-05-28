@@ -25,7 +25,7 @@
 * https://symfony.com/blog/new-in-symfony-2-8-deprecated-service-definitions
 * https://symfony.com/blog/new-in-symfony-6-1-service-decoration-attributes
 * https://symfony.com/blog/new-in-symfony-6-4-autowirelocator-and-autowireiterator-attributes
-* https://symfony.com/doc/current/reference/attributes.html#dependency-injection
+* https://symfony.com/doc/7.0/reference/attributes.html#dependency-injection
 ### Service decoration
 * https://symfony.com/blog/new-in-symfony-6-1-service-decoration-attributes
 * https://symfony.com/doc/7.0/service_container/service_decoration.html

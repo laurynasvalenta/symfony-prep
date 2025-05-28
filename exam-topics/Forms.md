@@ -34,7 +34,7 @@
 ### Form events
 * https://symfony.com/doc/7.0/form/events.html
 ### Form type extensions
-* https://symfony.com/doc/current/form/create_form_type_extension.html
+* https://symfony.com/doc/7.0/form/create_form_type_extension.html
 
 
 ## Additional Resources

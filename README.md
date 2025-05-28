@@ -22,6 +22,7 @@ The application covers the following topics from the Symfony Certification exam:
 - [HTTP Caching](exam-topics/HTTP-Caching.md)
 - [Console](exam-topics/Console.md)
 - [Automated Tests](exam-topics/Automated-Tests.md)
+- [Miscellaneous](exam-topics/Miscellaneous.md)
 - [PHP Basics](exam-topics/PHP-Basics.md)
 
 Each topic has a dedicated document with study notes, examples, and key points to help you prepare for the certification exam.

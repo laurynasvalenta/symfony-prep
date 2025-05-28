@@ -5,13 +5,13 @@
 ### Cache types (browser, proxies and reverse-proxies)
 * https://symfony.com/doc/7.0/http_cache.html
 ### Expiration (Expires, Cache-Control)
-* https://symfony.com/doc/6.0/http_cache/expiration.html
+* https://symfony.com/doc/7.0/http_cache/expiration.html
 ### Validation (ETag, Last-Modified)
-* https://symfony.com/doc/6.0/http_cache/validation.html
+* https://symfony.com/doc/7.0/http_cache/validation.html
 ### Client side caching
 * https://symfony.com/doc/7.0/http_cache/cache_vary.html
 ### Server side caching
-* https://symfony.com/doc/6.0/http_cache/ssi.html
+* https://symfony.com/doc/7.0/http_cache/ssi.html
 ### Edge Side Includes
 * https://symfony.com/doc/7.0/http_cache/esi.html
 
