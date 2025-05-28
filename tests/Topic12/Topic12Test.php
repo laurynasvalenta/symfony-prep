@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Topic12;
 
-use App\Service\Utilities\StringManipulator;
+use App\Service\Http\ExampleService;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -37,17 +37,16 @@ class Topic12Test extends WebTestCase
     #[Test]
     public function phpUnitDoublesCanBeUsedFakeComplexBehaviors(): void
     {
-        $manipulator = $this->createMock(StringManipulator::class);
-
-        $manipulator->expects(self::exactly(2))
-            ->method('applyFilter')
+        $service = $this->createMock(ExampleService::class);
+        $service->expects(self::exactly(2))
+            ->method('execute')
             ->willReturnOnConsecutiveCalls(
                 'result1',
                 'result2'
             );
 
-        $result1 = $manipulator->applyFilter('action1', 'subject1', 'value1', 1);
-        $result2 = $manipulator->applyFilter('action2', 'subject2', 'value2', 2);
+        $result1 = $service->execute();
+        $result2 = $service->execute();
 
         self::assertSame('result1', $result1);
         self::assertSame('result2', $result2);
