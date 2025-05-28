@@ -19,8 +19,6 @@ class BasicCommand extends Command
 
     public function __construct()
     {
-        parent::__construct();
-
         static::$constructorHasBeenCalled = true;
     }
 
