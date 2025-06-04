@@ -3,28 +3,28 @@
 ## Official Curriculum
 
 ### Configuration (only YAML and PHP attributes)
-* https://symfony.com/doc/current/routing.html#creating-routes
+* https://symfony.com/doc/7.0/routing.html#creating-routes
 ### Restrict URL parameters
-* https://symfony.com/doc/current/routing.html#route-parameters
+* https://symfony.com/doc/7.0/routing.html#route-parameters
 ### Set default values to URL parameters
-* https://symfony.com/doc/current/routing.html#route-parameters
+* https://symfony.com/doc/7.0/routing.html#route-parameters
 ### Generate URL parameters
-* https://symfony.com/doc/current/routing.html#generating-urls
+* https://symfony.com/doc/7.0/routing.html#generating-urls
 ### Trigger redirects
-* https://symfony.com/doc/current/routing.html#redirecting-to-urls-and-routes-directly-from-a-route
+* https://symfony.com/doc/7.0/routing.html#redirecting-to-urls-and-routes-directly-from-a-route
 ### Special internal routing attributes
-* https://symfony.com/doc/current/routing.html#special-parameters
+* https://symfony.com/doc/7.0/routing.html#special-parameters
 ### Domain name matching
-* https://symfony.com/doc/current/routing.html#sub-domain-routing
+* https://symfony.com/doc/7.0/routing.html#sub-domain-routing
 ### Conditional request matching
-* https://symfony.com/doc/current/routing.html#matching-expressions
+* https://symfony.com/doc/7.0/routing.html#matching-expressions
 ### HTTP methods matching
-* https://symfony.com/doc/current/routing.html#matching-http-methods
+* https://symfony.com/doc/7.0/routing.html#matching-http-methods
 ### User's locale guessing
-* https://symfony.com/doc/current/routing.html#route-groups-and-prefixes
+* https://symfony.com/doc/7.0/routing.html#route-groups-and-prefixes
 * https://symfony.com/blog/new-in-symfony-6-1-locale-switcher
 ### Router debugging
-* https://symfony.com/doc/current/routing.html#debugging-routes
+* https://symfony.com/doc/7.0/routing.html#debugging-routes
 
 
 ## Additional
