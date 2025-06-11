@@ -5,6 +5,7 @@
 ### Configuration (including DotEnv and ExpressionLanguage components)
 * https://symfony.com/doc/7.0/configuration.html
 * https://symfony.com/doc/7.0/components/expression_language.html
+* https://symfony.com/doc/7.0/configuration/secrets.html
 * https://symfony.com/doc/7.0/service_container/expression_language.html
 ### Error handling
 * https://symfony.com/doc/7.0/controller/error_pages.html
