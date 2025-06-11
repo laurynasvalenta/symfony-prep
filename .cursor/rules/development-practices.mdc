@@ -5,7 +5,7 @@ alwaysApply: true
 ---
 
 ## Development practices
-- Use recent PHP 8.4 features where appropriate:
+- Use recent PHP 8.3 features where appropriate:
   - Use typed properties with appropriate type declarations
   - Use union types and intersection types when needed
   - Use PHP 8 attributes instead of annotations
