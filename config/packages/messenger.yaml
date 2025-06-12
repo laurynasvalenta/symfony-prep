@@ -1,0 +1,8 @@
+framework:
+#    messenger:
+#        transports:
+#            custom_transport:
+#                dsn: 'custom-transport://'
+#
+#        routing:
+#            'App\Message\Miscellaneous\DemoMessage': custom_transport
