@@ -7,6 +7,9 @@ alwaysApply: true
 ## Code documentation
 - Focus on meaningful documentation:
   - Do not introduce useless obvious comments
+  - Do not provide comments that restate the code
+  - Do not repeat information in the comments
+  - Do not add comments that do not add value to the code (e.g., 'Arrange', 'Act', 'Assert' comments in tests)
   - Add PHPDoc blocks to classes and methods with meaningful descriptions
   - Include parameter and return type documentation in PHPDoc blocks
   - Use `@param`, `@return`, and `@throws` tags appropriately

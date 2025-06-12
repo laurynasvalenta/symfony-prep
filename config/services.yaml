@@ -42,6 +42,16 @@ services:
                 '@App\Service\Voter\CustomVoter',
             ]
 
+    App\Service\Miscellaneous\ExtendedExpressionLanguage:
+        public: true
+
+    App\MessageHandler\Miscellaneous\DemoMessageHandler:
+        public: true
+
+    Symfony\Component\Serializer\SerializerInterface: '@serializer'
+
+    App\Service\Miscellaneous\ProductManager:
+        public: true
 
 imports:
     - { resource: dependency_injection_topic.yaml }
