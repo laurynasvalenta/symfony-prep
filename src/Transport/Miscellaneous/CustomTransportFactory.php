@@ -24,6 +24,6 @@ class CustomTransportFactory implements TransportFactoryInterface
 
     public function supports(string $dsn, array $options): bool
     {
-        return false;
+        return str_starts_with($dsn, 'custom-transport://');
     }
 }

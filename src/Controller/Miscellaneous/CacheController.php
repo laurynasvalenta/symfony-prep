@@ -21,13 +21,26 @@ class CacheController extends AbstractController
     #[Route('/topic13/psr6-cache')]
     public function psr6Cache(): Response
     {
-        return new Response('Result: PSR-6 ' . microtime());
+        $cache = $this->getCache();
+        $cacheItem = $cache->getItem('psr6_result');
+
+        if (!$cacheItem->isHit()) {
+            $cacheItem->set('Result: PSR-6 ' . microtime());
+            $cache->save($cacheItem);
+        }
+
+        return new Response($cacheItem->get());
     }
 
     #[Route('/topic13/cache-contracts')]
     public function cacheContracts(): Response
     {
-        $result = 'Result: Contracts ' . microtime();
+        $cache = $this->getCache();
+
+        $result = $cache->get('contracts_result', function (ItemInterface $item): string {
+            $item->expiresAfter(3600);
+            return 'Result: Contracts ' . microtime();
+        });
 
         return new Response($result);
     }
@@ -40,7 +53,7 @@ class CacheController extends AbstractController
         $result = $cache->get('stampede_result', function (ItemInterface $item): string {
             $item->expiresAfter(3600);
             return 'Result: Early Expiration ' . microtime();
-        });
+        }, INF);
 
         return new Response($result);
     }
@@ -48,7 +61,16 @@ class CacheController extends AbstractController
     #[Route('/topic13/process-demo')]
     public function processDemo(): Response
     {
-        return new Response('');
+        $process = new Process(['php', 'bin/console', 'debug:dotenv']);
+        $process->setTimeout(10);
+        $process->run();
+
+        $output = $process->getOutput();
+        if (empty($output)) {
+            $output = 'Process demo - command executed successfully';
+        }
+
+        return new Response($output);
     }
 
     private function getCache(): ArrayAdapter

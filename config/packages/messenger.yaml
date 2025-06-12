@@ -1,8 +1,12 @@
 framework:
-#    messenger:
-#        transports:
-#            custom_transport:
-#                dsn: 'custom-transport://'
-#
-#        routing:
-#            'App\Message\Miscellaneous\DemoMessage': custom_transport
+    messenger:
+        transports:
+            custom_transport:
+                dsn: 'custom-transport://'
+
+        routing:
+            'App\Message\Miscellaneous\DemoMessage': custom_transport
+        buses:
+            messenger.bus.default:
+                middleware:
+                    - 'App\Middleware\Miscellaneous\IncrementMiddleware'

@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": "8.4.*",
+        "php": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/asset": "7.2.*",
@@ -16,7 +16,9 @@
         "symfony/framework-bundle": "7.2.*",
         "symfony/http-client": "7.2.*",
         "symfony/intl": "7.2.*",
+        "symfony/messenger": "7.2.*",
         "symfony/mime": "7.2.*",
+        "symfony/process": "7.2.*",
         "symfony/property-access": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",

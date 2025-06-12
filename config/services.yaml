@@ -45,7 +45,20 @@ services:
     App\Service\Miscellaneous\ExtendedExpressionLanguage:
         public: true
 
+    App\Transport\Miscellaneous\CustomTransportFactory:
+        tags:
+            - { name: messenger.transport_factory }
+
+    # Messenger handler services
     App\MessageHandler\Miscellaneous\DemoMessageHandler:
+        public: true
+
+    # Messenger middleware services
+    App\Middleware\Miscellaneous\IncrementMiddleware:
+        public: true
+
+    # Serializer demo service
+    App\Service\Miscellaneous\SerializerDemoService:
         public: true
 
     Symfony\Component\Serializer\SerializerInterface: '@serializer'
