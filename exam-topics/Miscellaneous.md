@@ -1,4 +1,4 @@
-# PHP Basics
+# Miscellaneous
 
 ## Official Curriculum
 
