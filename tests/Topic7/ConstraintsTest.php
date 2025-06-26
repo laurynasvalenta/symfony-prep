@@ -96,7 +96,7 @@ class ConstraintsTest extends WebTestCase
         yield [new ExampleModel('invalid_hostname'), 'constraint13', 'This value is not a valid hostname.'];
         yield [new ExampleModel('example.com'), 'constraint13', ''];
 
-        yield [new ExampleModel('invalid_ip'), 'constraint14', 'This is not a valid IP address.'];
+        yield [new ExampleModel('invalid_ip'), 'constraint14', 'This value is not a valid IP address.'];
         yield [new ExampleModel('192.168.1.1'), 'constraint14', ''];
 
         yield [new ExampleModel('192.168.1.1/33'), 'constraint15', 'The value of the netmask should be between 0 and 32.'];
@@ -105,7 +105,7 @@ class ConstraintsTest extends WebTestCase
         yield [new ExampleModel('invalid_json'), 'constraint16', 'This value should be valid JSON.'];
         yield [new ExampleModel('{"key": "value"}'), 'constraint16', ''];
 
-        yield [new ExampleModel('invalid-uuid'), 'constraint17', 'This is not a valid UUID.'];
+        yield [new ExampleModel('invalid-uuid'), 'constraint17', 'This value is not a valid UUID.'];
         yield [new ExampleModel('123e4567-e89b-12d3-a456-426614174000'), 'constraint17', ''];
 
         yield [new ExampleModel('invalid-ulid'), 'constraint18', 'This is not a valid ULID.'];
@@ -201,7 +201,7 @@ class ConstraintsTest extends WebTestCase
         yield [new ExampleModel(__FILE__), 'constraint48', 'This file is not a valid image.'];
         yield [new ExampleModel(__DIR__ . '/../../public/symfony.png'), 'constraint48', ''];
 
-        yield [new ExampleModel('invalid-bic'), 'constraint49', 'This is not a valid Business Identifier Code (BIC).'];
+        yield [new ExampleModel('invalid-bic'), 'constraint49', 'This value is not a valid Business Identifier Code (BIC).'];
         yield [new ExampleModel('DEUTDEFF'), 'constraint49', ''];
 
         yield [new ExampleModel('invalid-card'), 'constraint50', 'Unsupported card type or invalid card number.'];
@@ -213,7 +213,7 @@ class ConstraintsTest extends WebTestCase
         yield [new ExampleModel('79927398712'), 'constraint52', 'Invalid card number.'];
         yield [new ExampleModel('79927398713'), 'constraint52', ''];
 
-        yield [new ExampleModel('DE89370400440532013001'), 'constraint53', 'This is not a valid International Bank Account Number (IBAN).'];
+        yield [new ExampleModel('DE89370400440532013001'), 'constraint53', 'This value is not a valid International Bank Account Number (IBAN).'];
         yield [new ExampleModel('DE89370400440532013000'), 'constraint53', ''];
 
         yield [new ExampleModel('978-3-16-148410-1'), 'constraint54', 'This value is neither a valid ISBN-10 nor a valid ISBN-13.'];

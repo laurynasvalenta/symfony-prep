@@ -45,6 +45,21 @@ services:
     App\Service\Miscellaneous\ExtendedExpressionLanguage:
         public: true
 
+    App\Service\Miscellaneous\EmailNotifier:
+        public: true
+
+    App\Service\Miscellaneous\FileLocatorService:
+        public: true
+
+    App\Service\Miscellaneous\FileSystemService:
+        public: true
+
+    App\Service\Miscellaneous\DirectoryCloner:
+        public: true
+
+    App\Service\Miscellaneous\LockService:
+        public: true
+
     App\Transport\Miscellaneous\CustomTransportFactory:
         tags:
             - { name: messenger.transport_factory }
@@ -64,6 +79,9 @@ services:
     Symfony\Component\Serializer\SerializerInterface: '@serializer'
 
     App\Service\Miscellaneous\ProductManager:
+        public: true
+
+    App\Service\Miscellaneous\TranslationService:
         public: true
 
 imports:

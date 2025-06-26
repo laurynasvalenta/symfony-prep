@@ -1,5 +1,15 @@
 # ICU Select functionality for gender-based greetings
-greeting_gender: 'Hello'
+greeting_gender: >-
+    {gender, select,
+        male    {Hello, Mr. {name}!}
+        female  {Hello, Ms. {name}!}
+        other   {Hello, {name}!}
+    }
 
 # ICU Plural functionality for count-based messages
-item_count: 'Items'
+item_count: >-
+    {count, plural,
+        =0    {No items found.}
+        one   {1 item found.}
+        other {# items found.}
+    }
