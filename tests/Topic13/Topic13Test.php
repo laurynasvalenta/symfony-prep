@@ -6,19 +6,28 @@ namespace App\Tests\Topic13;
 
 use App\Model\Product;
 use App\Service\Miscellaneous\ExtendedExpressionLanguage;
+use App\Service\Miscellaneous\FileLocatorService;
+use App\Service\Miscellaneous\DirectoryCloner;
 use App\Service\Miscellaneous\ProductManager;
+use App\Service\Miscellaneous\LockService;
 use App\MessageHandler\Miscellaneous\DemoMessageHandler;
 use App\Message\Miscellaneous\DemoMessage;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Lock\Key;
+use Symfony\Component\Lock\Store\FlockStore;
 use Symfony\Component\Messenger\MessageBusInterface;
+use App\Service\Miscellaneous\TranslationService;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Test suite for Symfony Certification Topic 13 (Miscellaneous).
  */
 class Topic13Test extends WebTestCase
 {
+    const string SYMFONY_LOCK_FILE_NAME = '/tmp/symfony-locks//sf.test_resource.6H8883i.lock';
+    const string LOCK_TEST_RESOURCE_NAME = 'test_resource';
     private ?KernelBrowser $client = null;
     private ?DemoMessageHandler $handler = null;
     private ?ProductManager $productManager = null;
@@ -32,6 +41,8 @@ class Topic13Test extends WebTestCase
 
         $this->handler = $container->get(DemoMessageHandler::class);
         $this->productManager = static::getContainer()->get(ProductManager::class);
+
+        $this->prepareFilesystem();
     }
 
     /**
@@ -240,5 +251,198 @@ class Topic13Test extends WebTestCase
 
         static::assertCount(1, $processedMessages);
         static::assertGreaterThanOrEqual(43, $processedMessages[0]->value);
+    }
+
+    /**
+     * Tests that templated emails can be sent using the Mailer component
+     * and that the sent emails can be inspected in tests.
+     *
+     * @see src/Service/Miscellaneous/EmailNotifier.php
+     * @see templates/topic13/welcome_email.html.twig
+     * @see config/packages/mailer.yaml
+     */
+    #[Test]
+    public function templatedEmailCanBeSentUsingMailerComponent(): void
+    {
+        $this->client->enableProfiler();
+        $this->client->request('POST', '/topic13/send-welcome-email');
+
+        static::assertResponseIsSuccessful();
+        static::assertStringContainsString('Welcome email sent successfully!', $this->client->getResponse()->getContent());
+
+        $email = $this->client->getProfile()->getCollector('mailer')->getEvents()->getMessages()[0];
+        $htmlContent = $email->getHtmlBody();
+
+        static::assertEquals('Welcome to our platform!', $email->getSubject());
+        static::assertEquals('test@example.com', $email->getTo()[0]->getAddress());
+        static::assertEquals('noreply@example.com', $email->getFrom()[0]->getAddress());
+
+        static::assertStringContainsString('Welcome, John Doe!', $htmlContent);
+        static::assertStringContainsString('Thank you for joining our platform.', $htmlContent);
+    }
+
+    /**
+     * Tests that files can be located using multiple filtering parameters
+     * with the Symfony Finder component.
+     *
+     * @see src/Service/Miscellaneous/FileLocatorService.php
+     */
+    #[Test]
+    public function fileCanBeLocatedBasedOnMultipleParams(): void
+    {
+        $fileLocator = static::getContainer()->get(FileLocatorService::class);
+        $results = $fileLocator->findFilesWithMultipleFilters('/tmp/symfony_test_files');
+
+        static::assertCount(2, $results);
+        static::assertContains('file1.txt', $results);
+        static::assertContains('file3.txt', $results);
+        static::assertNotContains('file2.txt', $results);
+        static::assertNotContains('data.json', $results);
+    }
+
+    /**
+     * Tests that a whole directory can be copied using the Symfony Filesystem component.
+     *
+     * @see src/Service/Miscellaneous/DirectoryCloner.php
+     */
+    #[Test]
+    public function wholeDirectoryCanBeCopiedByUsingFilesystemComponent(): void
+    {
+        $sourceDir = '/tmp/symfony_source_dir';
+        $targetDir = '/tmp/symfony_target_dir';
+
+        $directoryCloner = static::getContainer()->get(DirectoryCloner::class);
+        $directoryCloner->cloneDirectory($sourceDir, $targetDir);
+        
+        static::assertDirectoryExists($targetDir);
+        static::assertFileExists($targetDir . '/file1.txt');
+        static::assertEquals(
+            file_get_contents($sourceDir . '/file1.txt'),
+            file_get_contents($targetDir . '/file1.txt')
+        );
+    }
+
+    /**
+     * Tests that read locks can be acquired by multiple readers simultaneously.
+     *
+     * @see src/Service/Miscellaneous/LockService.php
+     */
+    #[Test]
+    public function readLockCanBeAcquiredByMultipleReaders(): void
+    {
+        /** @var LockService $lockService */
+        $lockService = static::getContainer()->get(LockService::class);
+
+        $key = new Key(self::LOCK_TEST_RESOURCE_NAME);
+
+        $result1 = $lockService->acquireReadLock($key);
+
+        $resource = $key->getState(FlockStore::class)[1];
+        $key->removeState(FlockStore::class);
+
+        $result2 = $lockService->acquireReadLock($key);
+
+        static::assertIsResource($resource);
+        static::assertTrue($result1);
+        static::assertTrue($result2);
+        static::assertFileExists(self::SYMFONY_LOCK_FILE_NAME);
+    }
+
+    #[Test]
+    public function readLockCannotBeAcquiredIfWriteLockIsAlreadyAcquired(): void
+    {
+        /** @var LockService $lockService */
+        $lockService = static::getContainer()->get(LockService::class);
+
+        $key = new Key(self::LOCK_TEST_RESOURCE_NAME);
+
+        $result1 = $lockService->acquireWriteLock($key);
+
+        $resource = $key->getState(FlockStore::class)[1];
+        $key->removeState(FlockStore::class);
+
+        $result2 = $lockService->acquireReadLock($key);
+
+        static::assertIsResource($resource);
+        static::assertTrue($result1);
+        static::assertFalse($result2);
+        static::assertFileExists(self::SYMFONY_LOCK_FILE_NAME);
+    }
+
+    /**
+     * Tests that ICU select functionality can be used for gender-based translations.
+     * Demonstrates how to handle different gender selections using data providers.
+     *
+     * @see src/Service/Miscellaneous/TranslationService.php
+     */
+    #[Test]
+    #[DataProvider('icuSelectDataProvider')]
+    public function basicSwitchLogicCanBeUsedWhenTranslating(string $gender, string $name, string $expected): void
+    {
+        /** @var TranslationService $translationService */
+        $translationService = static::getContainer()->get(TranslationService::class);
+
+        $result = $translationService->translateWithIcuSelect($gender, $name, 'en');
+
+        static::assertEquals($expected, $result);
+    }
+
+    /**
+     * Tests that ICU plural functionality can be used for count-based translations.
+     * Demonstrates how to handle different plural forms using data providers.
+     *
+     * @see src/Service/Miscellaneous/TranslationService.php
+     */
+    #[Test]
+    #[DataProvider('icuPluralDataProvider')]
+    public function icuPluralFunctionalityCanBeUsedForCountBasedTranslations(int $count, string $expected): void
+    {
+        /** @var TranslationService $translationService */
+        $translationService = static::getContainer()->get(TranslationService::class);
+
+        $result = $translationService->translateWithIcuPlural($count, 'en');
+
+        static::assertEquals($expected, $result);
+    }
+
+    public static function icuSelectDataProvider(): array
+    {
+        return [
+            'male' => ['male', 'John', 'Hello, Mr. John!'],
+            'female' => ['female', 'Marie', 'Hello, Ms. Marie!'],
+            'other' => ['other', 'Alex', 'Hello, Alex!'],
+            'unknown' => ['unknown', 'Taylor', 'Hello, Taylor!'], // fallback to 'other'
+        ];
+    }
+
+    public static function icuPluralDataProvider(): array
+    {
+        return [
+            'zero' => [0, 'No items found.'],
+            'one' => [1, '1 item found.'],
+            'many' => [5, '5 items found.'],
+            'custom' => [2, '2 items found.'],
+        ];
+    }
+
+    private function prepareFilesystem(): void
+    {
+        foreach (['/tmp/symfony_test_files', '/tmp/symfony_target_dir', '/tmp/symfony_source_dir', '/tmp/symfony-locks'] as $dir) {
+            if (is_dir($dir)) {
+                array_map('unlink', glob($dir . '/*'));
+                rmdir($dir);
+            }
+        }
+
+        mkdir('/tmp/symfony-locks', 0755, true);
+
+        foreach (['/tmp/symfony_test_files', '/tmp/symfony_source_dir'] as $dir) {
+            mkdir($dir, 0755, true);
+
+            file_put_contents($dir . '/file1.txt', 'This is an important file with some content.');
+            file_put_contents($dir . '/file2.txt', 'Small file.');
+            file_put_contents($dir . '/file3.txt', 'This is another file with more content than the second one.');
+            file_put_contents($dir . '/data.json', '{"key": "value", "number": 42}');
+        }
     }
 }
