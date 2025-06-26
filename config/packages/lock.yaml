@@ -1,0 +1,7 @@
+framework:
+    lock: 'flock:///tmp/symfony-locks/'
+
+when@test:
+    framework:
+        lock:
+            dsn: 'flock:///tmp/symfony-locks/'
