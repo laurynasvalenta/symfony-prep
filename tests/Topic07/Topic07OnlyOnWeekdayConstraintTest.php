@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic7;
+namespace App\Tests\Topic07;
 
 use App\Validator\Constraints\OnlyOnWeekday;
 use App\Validator\Constraints\OnlyOnWeekdayValidator;
@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /*
  * This is a demonstration test for Symfony Certification Topic 7 (Data Validation).
  */
-class OnlyOnWeekdayConstraintTest extends TestCase
+class Topic07OnlyOnWeekdayConstraintTest extends TestCase
 {
     private ValidatorInterface $validator;
     private ClockInterface $clock;

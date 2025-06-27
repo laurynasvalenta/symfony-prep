@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic8;
+namespace App\Tests\Topic08;
 
 use App\Configuration\Configuration1;
 use App\Configuration\Configuration2;
@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 
-class ConfigurationTest extends TestCase
+class Topic08ConfigurationTest extends TestCase
 {
     /**
      * @see src/Configuration/Configuration1.php

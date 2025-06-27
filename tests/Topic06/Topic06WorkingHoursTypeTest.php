@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic6;
+namespace App\Tests\Topic06;
 
 use App\Form\Extension\ReadOnlyFieldExtension;
 use App\Form\WorkingHoursType;
@@ -13,7 +13,7 @@ use Psr\Clock\ClockInterface;
 use Symfony\Component\Clock\MockClock;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class WorkingHoursTypeTest extends TypeTestCase
+class Topic06WorkingHoursTypeTest extends TypeTestCase
 {
     private ClockInterface $clock;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic4;
+namespace App\Tests\Topic04;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /*
  * This is a demonstration test for Symfony Certification Topic 4 (Routing).
  */
-class Topic4Test extends WebTestCase
+class Topic04Test extends WebTestCase
 {
     #[Test]
     /**
