@@ -1,0 +1,63 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - implementation
+  pull_request:
+
+jobs:
+  docker-compose-up:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, mbstring, session, simplexml, tokenizer, xml, xmlreader, xmlwriter
+          coverage: none
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Set directory permissions
+        run: chmod -R 777 .
+
+      - name: Check Docker Compose version
+        run: docker compose version
+
+      - name: Build and start containers
+        run: docker compose up -d --build
+
+      - name: Wait for NGINX to respond
+        run: |
+          for i in {1..10}; do
+            curl -sSf http://localhost:8081 && break
+            sleep 3
+          done
+
+      - name: Test app response
+        run: curl -v http://localhost:8081
+
+      - name: Run PHPUnit tests
+        run: |
+          docker compose exec -u 1000 -e SHELL_VERBOSITY=0 -T php bin/phpunit --testdox
+
+      - name: Shut down containers
+        if: always()
+        run: docker compose down
