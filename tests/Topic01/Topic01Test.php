@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic1;
+namespace App\Tests\Topic01;
 
 use App\Service\Http\ExampleService;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -29,7 +29,7 @@ use Symfony\Component\HttpClient\Response\MockResponse;
  *  - src/Service/Http/ExampleService.php
  *  - config/packages/framework.yaml
  */
-class Topic1Test extends WebTestCase
+class Topic01Test extends WebTestCase
 {
     #[Test]
     public function requestParamIsSuffixed(): void

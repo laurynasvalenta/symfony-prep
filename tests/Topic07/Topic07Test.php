@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic7;
+namespace App\Tests\Topic07;
 
 use App\Model\AnotherExampleModel;
 use App\Model\ExampleModel;
@@ -20,7 +20,7 @@ use Twig\Environment;
 /*
  * This is a demonstration test for Symfony Certification Topic 7 (Data Validation).
  */
-class Topic7Test extends WebTestCase
+class Topic07Test extends WebTestCase
 {
     private KernelBrowser $client;
 

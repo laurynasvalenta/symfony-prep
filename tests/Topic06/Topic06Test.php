@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic6;
+namespace App\Tests\Topic06;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /*
  * This is a demonstration test for Symfony Certification Topic 6 (Forms).
  */
-class Topic6Test extends WebTestCase
+class Topic06Test extends WebTestCase
 {
     /**
      * Use `topic6/example_form.html.twig` template.

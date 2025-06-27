@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic5;
+namespace App\Tests\Topic05;
 
 use App\Controller\TemplatingWithTwig\TemplatingWithTwigController;
 use App\TwigExtension\TwigExtension;
@@ -18,7 +18,7 @@ use Twig\Source;
 /*
  * This is a demonstration test for Symfony Certification Topic 5 (Templating with Twig).
  */
-class Topic5Test extends WebTestCase
+class Topic05Test extends WebTestCase
 {
     use ExpectDeprecationTrait;
 

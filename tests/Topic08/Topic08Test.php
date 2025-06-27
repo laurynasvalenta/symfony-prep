@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic8;
+namespace App\Tests\Topic08;
 
 use App\Service\DependencyInjectionTopic\Aggregator;
 use App\Service\DependencyInjectionTopic\AnotherServiceWithMultipleDependencies;
@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
-class Topic8Test extends KernelTestCase
+class Topic08Test extends KernelTestCase
 {
     private ContainerInterface $extendedTestContainer;
     private ContainerInterface $standardAppContainer;

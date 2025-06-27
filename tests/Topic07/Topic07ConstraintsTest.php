@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic7;
+namespace App\Tests\Topic07;
 
 use App\Model\AnotherExampleModel;
 use App\Model\ExampleModel;
@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /*
  * This is a demonstration test for Symfony Certification Topic 7 (Data Validation).
  */
-class ConstraintsTest extends WebTestCase
+class Topic07ConstraintsTest extends WebTestCase
 {
     private ValidatorInterface $validator;
 

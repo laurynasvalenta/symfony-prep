@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Topic9;
+namespace App\Tests\Topic09;
 
 use App\Controller\Security\FirewalledPages;
 use App\Model\User;
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\User\InMemoryUser;
 /*
  * This is a demonstration test for Symfony Certification Topic 9 (Security).
  */
-class Topic9Test extends WebTestCase
+class Topic09Test extends WebTestCase
 {
     private KernelBrowser $client;
     private Security $security;
